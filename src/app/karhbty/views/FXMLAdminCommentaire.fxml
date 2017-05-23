@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="AnPane" prefHeight="593.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.karhbty.controllers.FXMLCommentaireController">
+   <children>
+      <TabPane fx:id="TabPane" layoutX="14.0" layoutY="62.0" prefHeight="318.0" prefWidth="810.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="TPAnn" text="Annonce">
+            <content>
+              <AnchorPane fx:id="APAnn" minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="713.0">
+                     <children>
+                        <TableView fx:id="TVAnn" prefHeight="291.0" prefWidth="810.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="TPPieRech" onSelectionChanged="#onPieRechClicked" text="Piece de rechange">
+            <content>
+              <AnchorPane fx:id="APPieRech" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="TVPieRech" prefHeight="289.0" prefWidth="810.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="TPBout" text="Boutique">
+              <content>
+                <AnchorPane fx:id="APBout" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="TVBout" prefHeight="290.0" prefWidth="810.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="TPTestB" text="Test blanc">
+              <content>
+                <AnchorPane fx:id="APTestB" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="TVTestB" prefHeight="289.0" prefWidth="810.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="TPCode" text="Code Routiere">
+              <content>
+                <AnchorPane fx:id="APCode" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="TVCode" prefHeight="290.0" prefWidth="810.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="TPCond" text="Conduite">
+              <content>
+                <AnchorPane fx:id="APCond" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="TVCond" prefHeight="290.0" prefWidth="810.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="TPRevVid" text="Revision &amp; Vidange">
+              <content>
+                <AnchorPane fx:id="APRevVid" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="TVRevVid" prefHeight="290.0" prefWidth="810.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="TPClim" text="Climatisation">
+              <content>
+                <AnchorPane fx:id="APClim" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="TVClim" prefHeight="299.0" prefWidth="810.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="TPElec" text="Electrique">
+              <content>
+                <AnchorPane fx:id="APElec" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="TVElec" prefHeight="291.0" prefWidth="810.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="TPMec" text="Mecanique">
+              <content>
+                <AnchorPane fx:id="APMec" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="TVMec" prefHeight="291.0" prefWidth="810.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Label fx:id="labSuj" layoutX="16.0" layoutY="14.0" prefHeight="35.0" prefWidth="241.0" text="Sujet du commentaire">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" fx:id="AnchorPane" onDragDetected="#ajoutPhoto" prefHeight="448.0" prefWidth="692.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.karhbty.controllers.InfoUserController">
+   <children>
+      <ImageView id="imguser" fx:id="ImgView" fitHeight="150.0" fitWidth="183.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Button id="ajoutPhoto" fx:id="AddImgButton" layoutX="45.0" layoutY="172.0" mnemonicParsing="false" onAction="#ajoutPhoto" prefHeight="25.0" prefWidth="122.0" text="ajouter votre photo" />
+      <Pane id="Pane1" fx:id="Pane1" layoutX="222.0" layoutY="129.0" prefHeight="56.0" prefWidth="309.0">
+         <children>
+            <Label id="AdresseLabel" fx:id="AdresseLabel" layoutX="31.0" layoutY="23.0" text="Adresse" />
+            <TextField id="AdresseTF" fx:id="AdresseTF" layoutX="92.0" layoutY="16.0" />
+         </children>
+      </Pane>
+      <Pane id="Pane2" fx:id="Pane2" layoutX="222.0" layoutY="196.0" prefHeight="56.0" prefWidth="309.0">
+         <children>
+            <Label id="CinLabel" fx:id="CinLabel" layoutX="31.0" layoutY="23.0" text="CIN" />
+            <TextField id="CinTF" fx:id="CinTF" layoutX="93.0" layoutY="16.0" />
+         </children>
+      </Pane>
+      <Pane id="Pane3" fx:id="Pane3" layoutX="222.0" layoutY="252.0" prefHeight="56.0" prefWidth="309.0">
+         <children>
+            <Label id="TelLabel" fx:id="TelLabel" layoutX="31.0" layoutY="23.0" text="Telephone" />
+            <TextField fx:id="TelTF" layoutX="95.0" layoutY="16.0" />
+         </children>
+      </Pane>
+      <Button fx:id="OKButton" layoutX="509.0" layoutY="345.0" mnemonicParsing="false" onAction="#OkbuttonClicked" text="Ok" />
+      <Label fx:id="errorLab" layoutX="444.0" layoutY="389.0" prefHeight="25.0" prefWidth="217.0" text="Label" />
+   </children>
+</AnchorPane>
