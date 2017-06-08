@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="KarhabtiPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>entites.Reservation</class>
+    <class>entites.ServClimatisation</class>
+    <class>entites.PieceRechange</class>
+    <class>entites.ServRevVidange</class>
+    <class>entites.Panier</class>
+    <class>entites.QuestionsTestsblanc</class>
+    <class>entites.ServElectrique</class>
+    <class>entites.Deals</class>
+    <class>entites.ServMecanique</class>
+    <class>entites.Voiture</class>
+    <class>entites.ServCodeRoutiere</class>
+    <class>entites.Horaire</class>
+    <class>entites.Paiement</class>
+    <class>entites.Notification</class>
+    <class>entites.Boutique</class>
+    <class>entites.Commentaire</class>
+    <class>entites.Favoris</class>
+    <class>entites.ServConduite</class>
+    <class>entites.RendezVous</class>
+    <class>entites.Utilisateur</class>
+    <class>entites.StationMultiService</class>
+    <class>entites.ServTestBlanc</class>
+    <class>entites.Annonce</class>
+    <class>entites.Resultat</class>
+    <class>entites.AutoEcole</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/karhabty?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+</persistence>

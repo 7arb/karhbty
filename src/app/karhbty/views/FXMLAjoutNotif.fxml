@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.karhbty.controllers.FXMLAjoutNotifController">
+   <children>
+      <JFXTextField fx:id="nomtf" layoutX="33.0" layoutY="37.0" prefHeight="25.0" prefWidth="264.0" promptText="Reminder name" />
+      <Label layoutX="33.0" layoutY="99.0" prefHeight="25.0" prefWidth="67.0" text="Objet :" />
+      <JFXRadioButton fx:id="assurancebtn" layoutX="100.0" layoutY="103.0" prefHeight="17.0" prefWidth="115.0" text="Assurance">
+         <toggleGroup>
+            <ToggleGroup fx:id="objetNotif" />
+         </toggleGroup></JFXRadioButton>
+      <JFXRadioButton fx:id="Pneubtn" layoutX="100.0" layoutY="148.0" text="Pneu" toggleGroup="$objetNotif" />
+      <JFXRadioButton fx:id="VTbtn" layoutX="259.0" layoutY="103.0" prefHeight="17.0" prefWidth="139.0" text="Visite Technique" toggleGroup="$objetNotif" />
+      <JFXRadioButton fx:id="Vignettebtn" layoutX="259.0" layoutY="192.0" prefHeight="17.0" prefWidth="95.0" text="Vignette" toggleGroup="$objetNotif" />
+      <JFXRadioButton fx:id="Vidangebtn" layoutX="259.0" layoutY="148.0" prefHeight="17.0" prefWidth="95.0" text="Vidange" toggleGroup="$objetNotif" />
+      <JFXRadioButton fx:id="Croixbtn" layoutX="100.0" layoutY="192.0" prefHeight="17.0" prefWidth="81.0" text="Croix" toggleGroup="$objetNotif" />
+      <JFXDatePicker fx:id="dateReminder" layoutX="33.0" layoutY="256.0" promptText="Choose reminder date" />
+      <JFXButton layoutX="398.0" layoutY="317.0" onAction="#OkAjoutNotif" text="OK" />
+   </children>
+</AnchorPane>

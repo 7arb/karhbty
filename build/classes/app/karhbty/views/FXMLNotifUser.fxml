@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.karhbty.controllers.FXMLNotifUserController">
+   <children>
+      <JFXButton fx:id="newbtn" layoutX="560.0" layoutY="44.0" onAction="#AjoutNotif" text="New" />
+      <JFXButton fx:id="deletebtn" layoutX="687.0" layoutY="44.0" onAction="#SuppNotif" text="Delete" />
+      <TableView fx:id="tabview" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="218.0" />
+      <TableView fx:id="tabNotifView" layoutX="378.0" layoutY="107.0" prefHeight="357.0" prefWidth="653.0" />
+   </children>
+</AnchorPane>
