@@ -5,7 +5,6 @@
  */
 package app.karhbty.services;
 
-import app.karhbty.datasource.Controller;
 import app.karhbty.datasource.DataSource;
 import app.karhbty.datasource.Session;
 
@@ -13,7 +12,6 @@ import app.karhbty.datasource.Controller;
 import app.karhbty.datasource.ServiceFactory;
 import app.karhbty.entities.Voiture;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.rmi.CORBA.Util;
 
 
 /**
@@ -68,77 +65,15 @@ DataSource ds= DataSource.getInstance();
         }
     }
     
-    public void ajouterv3(Voiture v){
-        try {
-            String req = "INSERT INTO voiture (matricule,marque,modele,date_mecanique,couleur,nbr_cheveaux,kilometrage,energie,id_vendeur,date_assurance,date_pneux,date_visiteTechnique,date_croix,date_vidange,date_vigniette,photo1,photo2,photo3,id_utilisateur)"
-                    + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            ste = ds.getConnection().prepareStatement(req);
-            ste.setString(1, v.getMatricule());
-            ste.setString(2,v.getMarque());
-            ste.setString(3,v.getModele());
-            ste.setDate(4,Controller.convertFromJAVADateToSQLDate(v.getDate_mec()));
-            ste.setString(5,v.getCouleur());
-            ste.setInt(6,v.getNbr_cheveaux());
-            ste.setInt(7,v.getKilometrage());
-            ste.setString(8,v.getEnergie());
-            //ste.setInt(9,v.getVendeur());
-            ste.setInt(9,Session.getInstance().getCurrent().getIdUtilisateur());
-            ste.setDate(10,Controller.convertFromJAVADateToSQLDate(v.getDate_assurance()));
-            ste.setDate(11,Controller.convertFromJAVADateToSQLDate(v.getDate_pneu()));
-            ste.setDate(12,Controller.convertFromJAVADateToSQLDate(v.getDate_VT()));
-            ste.setDate(13,Controller.convertFromJAVADateToSQLDate(v.getDate_croix()));
-            ste.setDate(14,Controller.convertFromJAVADateToSQLDate(v.getDate_vidg()));
-            ste.setDate(15,Controller.convertFromJAVADateToSQLDate(v.getDate_vignette()));
-            ste.setString(16,v.getPhoto1());
-            ste.setString(17,v.getPhoto2());
-            ste.setString(18,v.getPhoto3());
-            //ste.setInt(19,v.getUtilisateur());
-            ste.setInt(19,Session.getInstance().getCurrent().getIdUtilisateur());
-            ste.executeUpdate();//insert update delete
-        } catch (SQLException ex) {
-            Logger.getLogger(VoitureService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    public void ajouterv4(Voiture v){
-        try {
-            String req = "INSERT INTO voiture (matricule,marque,modele,date_mecanique,couleur,nbr_cheveaux,kilometrage,energie,id_vendeur,date_assurance,date_pneux,date_visiteTechnique,date_croix,date_vidange,date_vigniette,photo1,photo2,photo3,id_utilisateur)"
-                    + " VALUES('"+
-            
-            v.getMatricule()+"',"+
-            v.getMarque()+"',"+
-            v.getModele()+"',"+
-            Controller.convertFromJAVADateToSQLDate(v.getDate_mec())+"',"+
-            v.getCouleur()+"',"+
-            v.getNbr_cheveaux()+"',"+
-            v.getKilometrage()+"',"+
-            v.getEnergie()+"',"+
-            //ste.setInt(9,v.getVendeur());
-            Session.getInstance().getCurrent().getIdUtilisateur()+"',"+
-            Controller.convertFromJAVADateToSQLDate(v.getDate_assurance())+"',"+
-            Controller.convertFromJAVADateToSQLDate(v.getDate_pneu())+"',"+
-            Controller.convertFromJAVADateToSQLDate(v.getDate_VT())+"',"+
-            Controller.convertFromJAVADateToSQLDate(v.getDate_croix())+"',"+
-            Controller.convertFromJAVADateToSQLDate(v.getDate_vidg())+"',"+
-            Controller.convertFromJAVADateToSQLDate(v.getDate_vignette())+"',"+
-            v.getPhoto1()+"',"+
-            v.getPhoto2()+"',"+
-            v.getPhoto3()+"',"+
-            //ste.setInt(19,v.getUtilisateur());
-            Session.getInstance().getCurrent().getIdUtilisateur()+")";
-            ste.executeUpdate(req);//insert update delete
-        } catch (SQLException ex) {
-            Logger.getLogger(VoitureService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     
         
     public boolean delete(Voiture obj) {
         String req="delete from voiture where id_voiture=?";
     try {
         
-        PreparedStatement ste = ServiceFactory.connect.prepareStatement(req);
-        ste.setInt(1,obj.getIdVoiture());
-        ste.executeUpdate();
+        PreparedStatement st = ServiceFactory.connect.prepareStatement(req);
+        st.setInt(1,obj.getIdVoiture());
+        st.executeUpdate();
         
         System.out.println("Voiture supprimé");
             return true;
@@ -152,9 +87,9 @@ DataSource ds= DataSource.getInstance();
         String req="DELETE FROM voiture WHERE id_voiture=?";
     try {
         
-        PreparedStatement ste = ServiceFactory.connect.prepareStatement(req);
-        ste.setInt(1,id);
-        ste.executeUpdate();
+        PreparedStatement st = ServiceFactory.connect.prepareStatement(req);
+        st.setInt(1,id);
+        st.executeUpdate();
         
         System.out.println("Voiture supprimé");
             
@@ -173,26 +108,24 @@ DataSource ds= DataSource.getInstance();
             ste = ds.getConnection().prepareStatement(req);
             ste.setString(1, v.getMatricule());
             ste.setString(2,v.getMarque());
-            ste.setString(3, v.getModele());
-            ste.setDate(4, (Date) v.getDate_mec());
+            ste.setString(3,v.getModele());
+            ste.setDate(4,Controller.convertFromJAVADateToSQLDate(v.getDate_mec()));
             ste.setString(5,v.getCouleur());
             ste.setInt(6,v.getNbr_cheveaux());
-            ste.setFloat(7,v.getKilometrage());
+            ste.setInt(7,v.getKilometrage());
             ste.setString(8,v.getEnergie());
-            ste.setObject(9,v.getUtilisateur());
-            ste.setDate(10, (Date) v.getDate_assurance());
-            ste.setDate(11,(Date)v.getDate_pneu());
-            ste.setDate(12,(Date)v.getDate_VT());
-            ste.setDate(13,(Date)v.getDate_croix());
-            ste.setDate(14,(Date)v.getDate_vidg());
-            ste.setDate(15,(Date)v.getDate_vignette());
+            ste.setInt(9,v.getVendeur());
+            ste.setDate(10,Controller.convertFromJAVADateToSQLDate(v.getDate_assurance()));
+            ste.setDate(11,Controller.convertFromJAVADateToSQLDate(v.getDate_pneu()));
+            ste.setDate(12,Controller.convertFromJAVADateToSQLDate(v.getDate_VT()));
+            ste.setDate(13,Controller.convertFromJAVADateToSQLDate(v.getDate_croix()));
+            ste.setDate(14,Controller.convertFromJAVADateToSQLDate(v.getDate_vidg()));
+            ste.setDate(15,Controller.convertFromJAVADateToSQLDate(v.getDate_vignette()));
             ste.setString(16,v.getPhoto1());
             ste.setString(17,v.getPhoto2());
             ste.setString(18,v.getPhoto3());
-            ste.setObject(19,v.getUtilisateur());
-        ste.executeUpdate();
+            ste.setInt(19,v.getUtilisateur());
         } catch (SQLException ex) {
-            ex.printStackTrace();
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -201,9 +134,9 @@ DataSource ds= DataSource.getInstance();
        
   
        public ArrayList<Voiture> displayAllVoi() {
-        ArrayList<Voiture> listeVoi = new ArrayList<Voiture>();
+        ArrayList<Voiture> listeVoi = new ArrayList<>();
 
-        String requete = "select id_voiture,matricule,marque,modele,couleur,nbr_cheveaux,kilometrage from voiture";
+        String requete = "select id_voiture,matricule,marque,modele,couleur,nbr_cheveaux,kilometrage,id_utilisateur from voiture";
         try {
             Statement statement = ServiceFactory.connect.createStatement();
             ResultSet resultat = statement.executeQuery(requete);
@@ -212,11 +145,12 @@ DataSource ds= DataSource.getInstance();
                 Voiture v = new Voiture();
                 v.setIdVoiture(resultat.getInt(1));
                 v.setMatricule(resultat.getString(2));
-            v.setMarque(resultat.getString(3));
-            v.setModele(resultat.getString(4));
-            v.setCouleur(resultat.getString(5));
-            v.setNbr_cheveaux(resultat.getInt(6));
-            v.setKilometrage(resultat.getInt(7));
+                v.setMarque(resultat.getString(3));
+                v.setModele(resultat.getString(4));
+                v.setCouleur(resultat.getString(5));
+                v.setNbr_cheveaux(resultat.getInt(6));
+                v.setKilometrage(resultat.getInt(7));
+                v.setUtilisateur(resultat.getInt(8));
                 
 
                 listeVoi.add(v);
@@ -229,7 +163,7 @@ DataSource ds= DataSource.getInstance();
         }
     }
         public ArrayList<Voiture> displayUserVoi() {
-        ArrayList<Voiture> listeUserVoi = new ArrayList<Voiture>();
+        ArrayList<Voiture> listeUserVoi = new ArrayList<>();
 
         String requete = "select id_voiture,matricule,marque,modele,couleur,nbr_cheveaux,kilometrage from voiture where id_utilisateur="+Session.getInstance().getCurrent().getIdUtilisateur()+"";
         try {
@@ -279,7 +213,7 @@ try {
         
     }
     
-} catch (Exception ex) {
+} catch (SQLException ex) {
     
     Logger.getLogger(VoitureService.class.getName()).log(Level.SEVERE, null, ex);
     
@@ -291,7 +225,7 @@ try {
     
     
     public ArrayList<Voiture> rechercheVoiture (String marque) {
-        ArrayList<Voiture> listeUserVoi = new ArrayList<Voiture>();
+        ArrayList<Voiture> listeUserVoi = new ArrayList<>();
 
         String requete = "select id_voiture,matricule,marque,modele,couleur,nbr_cheveaux,kilometrage from voiture where id_utilisateur="+Session.getInstance().getCurrent().getIdUtilisateur()+"";
         try {

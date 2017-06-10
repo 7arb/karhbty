@@ -5,6 +5,7 @@
  */
 package app.karhbty.controllers;
 
+import app.karhbty.datasource.Session;
 import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -62,6 +64,13 @@ public class AcceuilController implements Initializable {
 
     @FXML
     private JFXButton histo;
+    
+    @FXML
+    private JFXButton btnDisco;
+
+    @FXML
+    private ImageView imgDisco;
+
 
 public static AnchorPane p ;
     public  static StackPane m ;
@@ -224,7 +233,24 @@ public static AnchorPane p ;
         stage.show();
         System.out.println("Vous etes dans profil voiture");
     }
+@FXML
+  public void logout(ActionEvent e)throws IOException
+  {  
+     URL sceneToLoad = null;
+        
+        Session.logOut();
+         sceneToLoad = new File("src/app/karhbty/views/LoginInterface.fxml").toURL();
+         Stage primaryStage = null;
+   
+        FXMLLoader fxmlLoader = new FXMLLoader(sceneToLoad);
+        Parent root1 = (Parent) fxmlLoader.load();
+        Node node = (Node) e.getSource();
+        Stage stage = (Stage) node.getScene().getWindow() ;
 
+        stage.setScene(new Scene(root1));
+        stage.show();
+        System.out.println("Merci pour votre visite"); 
+  }
 }
         // TODO
       

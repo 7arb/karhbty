@@ -8,6 +8,9 @@ package app.karhbty.controllers;
 import static app.karhbty.datasource.ServiceFactory.connect;
 import app.karhbty.entities.Voiture;
 import app.karhbty.services.VoitureService;
+import app.karhbty.datasource.Controller;
+import app.karhbty.datasource.SendMailConfirmation;
+import app.karhbty.datasource.Session;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -17,6 +20,7 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Optional;
 import javafx.collections.FXCollections;
@@ -39,6 +43,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javax.mail.MessagingException;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
@@ -163,6 +168,12 @@ public class VoitureController implements Initializable {
 
     @FXML
     private JFXButton btnUpdate;
+    
+    @FXML
+    private JFXButton btnUp;
+    
+    @FXML
+    private JFXButton btnCancel;
 
     @FXML
     private JFXButton btnView;
@@ -176,6 +187,12 @@ public class VoitureController implements Initializable {
     @FXML
     private ImageView imgAdd;
 
+    @FXML
+    private ImageView imgUp;
+    
+    @FXML
+    private ImageView imgCancel;
+    
     @FXML
     private ImageView imgUpdate;
 
@@ -194,7 +211,7 @@ public class VoitureController implements Initializable {
     private ObservableList<Voiture> datacar = FXCollections.observableArrayList();
     private ObservableList<Voiture> car = FXCollections.observableArrayList();
     VoitureService carDAO = new VoitureService(connect);
-
+    Voiture voi = new Voiture();
     /**
      * Initializes the controller class.
      */
@@ -237,6 +254,11 @@ public class VoitureController implements Initializable {
         
         TabView.getColumns().addAll(colId, carImmCol, carMarqCol, carModCol, carCouCol, carPuissCol, carKiloCol);
         TabView.setItems(datacar);
+        
+        btnUp.setVisible(false);
+        btnCancel.setVisible(false);
+        imgCancel.setVisible(false);
+        imgUp.setVisible(false);
     }    
     
     @FXML
@@ -311,87 +333,85 @@ public class VoitureController implements Initializable {
         System.out.println("Vous etes dans l'acceuil");
     }
 
-//        @FXML
-//    void onAddClicked2(ActionEvent event) throws IOException {
-//        Voiture v = new Voiture (
-//        textMarque.getText(),
-//        textModele.getText(),
-//        textMatricule.getText(),
-//        textCouleur.getText(),
-//        Integer.parseInt(textPuissance.getText()),
-//        Integer.parseInt(textKilometrage.getText()),
-//        carb.getSelectedToggle().getUserData().toString(),
-//        dateMecanique.getValue(),
-//        dateCroix.getValue(),
-//        dateVidange.getValue(),
-//        dateAssurance.getValue(),
-//        dateVisiTech.getValue(),
-//        dateVigniette.getValue(),
-//        datePneu.get
-//        
-//        );
-//        
-//        
-//        VoitureService vdao = new VoitureService(connect);
-//    }
     
     @FXML
-    void onAddClicked(ActionEvent event) throws IOException {
-//        
-//        UserService userDAO = (UserService) ServiceFactory.getUser();
-//        VoitureService carDAO = new VoitureService(connect);
-//        URL sceneToLoad = null;
-//        String title = null;
-//        
-//        String marque = textMarque.getText();
-//        String modele = textModele.getText();
-//        String mat = textMatricule.getText();
-//        String couleur = textCouleur.getText();
-//        int puiss = Integer.parseInt(textPuissance.getText());
-//        int kilomet = Integer.parseInt(textKilometrage.getText());
-//        String carburant = carb.getSelectedToggle().getUserData().toString();
-////        //Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-////        //Date mec = Date.from(LocalDate.atStartOfDay(dateMecnique.systemDefault()).toInstant());
-////        //Date mec = java.util.Date.from(dateMecanique);
-////        //LocalDate mec = dateMecanique.getValue();
-//////        LocalDate croix = dateCroix.getValue();
-//////        LocalDate vid = dateVidange.getValue();
-//////        LocalDate assu = dateAssurance.getValue();
-//////        LocalDate visitech = dateVisiTech.getValue();
-//////        LocalDate vigni = dateVigniette.getValue();
-//////        LocalDate pneu = datePneu.getValue();
-//////        
-////        
-        //LocalDate mecdate =dateMecanique.getValue();
-//Instant instant1 = Instant.from(mecdate.atStartOfDay(ZoneId.of("GMT")));
-//Date mec = Date.from(instant1);
-//        LocalDate croidate =dateCroix.getValue();
-//Instant instant2 = Instant.from(croidate.atStartOfDay(ZoneId.of("GMT")));
-//Date croix = Date.from(instant2);
-//LocalDate vidate =dateVidange.getValue();
-//Instant instant3 = Instant.from(vidate.atStartOfDay(ZoneId.of("GMT")));
-//Date vid = Date.from(instant3);
-//LocalDate assudate =dateAssurance.getValue();
-//Instant instant4 = Instant.from(assudate.atStartOfDay(ZoneId.of("GMT")));
-//Date assu = Date.from(instant4);
-//LocalDate visdate =dateVisiTech.getValue();
-//Instant instant5 = Instant.from(visdate.atStartOfDay(ZoneId.of("GMT")));
-//Date visitech = Date.from(instant5);
-//LocalDate vigdate =dateVigniette.getValue();
-//Instant instant6 = Instant.from(vigdate.atStartOfDay(ZoneId.of("GMT")));
-//Date vigni = Date.from(instant6);
-//LocalDate pdate =datePneu.getValue();
-//Instant instant7 = Instant.from(pdate.atStartOfDay(ZoneId.of("GMT")));
-//Date pneu = Date.from(instant7);
-//        //Voiture car = new Voiture(mat,marque,modele,mec,couleur,puiss,kilomet,carburant,Session.getInstance().getCurrent().getIdUtilisateur(),assu,pneu,visitech,croix,vid,vigni,"","","",Session.getInstance().getCurrent().getIdUtilisateur());
-//        carDAO.ajouterv3(mat,marque,modele,mec,couleur,puiss,kilomet,carburant,Session.getInstance().getCurrent().getIdUtilisateur(),assu,pneu,visitech,croix,vid,vigni,"","","",Session.getInstance().getCurrent().getIdUtilisateur());
-//        
-//         TrayNotification tray = new TrayNotification("Succes", " Voiture ajoutée avec succes",NotificationType.SUCCESS);
-//            tray.showAndDismiss(javafx.util.Duration.seconds(2));
+    void onAddClicked(ActionEvent event) throws IOException, MessagingException {
+        
+        
+        String carburant=null;
+        String marque = textMarque.getText();
+        String modele = textModele.getText();
+        String mat = textMatricule.getText();
+        String couleur = textCouleur.getText();
+        int puiss = Integer.parseInt(textPuissance.getText());
+        int kilomet = Integer.parseInt(textKilometrage.getText());
+        
+        if (carb.getSelectedToggle()==radioDiesel){
+            carburant="diesel";
+        }else if (carb.getSelectedToggle()==radioEssence){
+            carburant="essence";
+        } 
+       
+        
+        voi = new Voiture(mat,marque,modele,
+                Controller.asDate(dateMecanique.getValue()),
+                couleur,puiss,kilomet,carburant,
+                Session.getInstance().getCurrent().getIdUtilisateur(),
+                Controller.asDate(dateAssurance.getValue()),
+                Controller.asDate(datePneu.getValue()),
+                Controller.asDate(dateVisiTech.getValue()),
+                Controller.asDate(dateCroix.getValue()),
+                Controller.asDate(dateVidange.getValue()),
+                Controller.asDate(dateVigniette.getValue()),
+                "","","",Session.getInstance().getCurrent().getIdUtilisateur());
+        
+        carDAO.ajouterv2(voi);
+        
+        SendMailConfirmation s1=new SendMailConfirmation(Session.getInstance().getCurrent().getEmail(),"ajout voiture avec succes");
+         TrayNotification tray = new TrayNotification("Succes", " Voiture ajoutée avec succes",NotificationType.SUCCESS);
+            tray.showAndDismiss(javafx.util.Duration.seconds(2));
+            
+            URL sceneToLoad = null;
+        String title = null;
+         sceneToLoad = new File("src/app/karhbty/views/FXMLVoiture.fxml").toURL();
+   Stage primaryStage = null;
+   
+        FXMLLoader fxmlLoader = new FXMLLoader(sceneToLoad);
+        Parent root1 = (Parent) fxmlLoader.load();
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow() ;
+
+        stage.setScene(new Scene(root1));
+        stage.show();
+        System.out.println("Vous etes dans profil voiture");
     }
     
     @FXML
-    private void deleteCar(ActionEvent event) {
+    void onAffichClicked(ActionEvent event) throws IOException {
+    
+        if (TabView.getSelectionModel().getSelectedIndices().size() > 0) {
+            textMarque.setText(TabView.getSelectionModel().getSelectedItem().getMarque());
+            textModele.setText(TabView.getSelectionModel().getSelectedItem().getModele());
+            textCouleur.setText(TabView.getSelectionModel().getSelectedItem().getCouleur());
+            textMatricule.setText(TabView.getSelectionModel().getSelectedItem().getMatricule());
+            String kilo= Integer.toString(TabView.getSelectionModel().getSelectedItem().getKilometrage());
+            textKilometrage.setText(kilo);
+            String nbrch = Integer.toString(TabView.getSelectionModel().getSelectedItem().getNbr_cheveaux());
+            textPuissance.setText(nbrch);
+            textPhoto1.setText(TabView.getSelectionModel().getSelectedItem().getPhoto1());
+            textPhoto2.setText(TabView.getSelectionModel().getSelectedItem().getPhoto2());
+            textPhoto3.setText(TabView.getSelectionModel().getSelectedItem().getPhoto3());
+            //dateMecanique.setValue(TabView.getSelectionModel().getSelectedItem().getDate_mec());
+            if ("diesel".equals(TabView.getSelectionModel().getSelectedItem().getEnergie())){
+                carb.selectToggle(radioDiesel);
+            }else {
+                carb.selectToggle(radioEssence);
+            }
+        }
+    
+    }
+    @FXML
+    private void deleteCar(ActionEvent event) throws MalformedURLException, IOException, MessagingException {
         if (TabView.getSelectionModel().getSelectedIndices().size() > 0) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
@@ -412,9 +432,11 @@ public class VoitureController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("voiture supprimer avec succés");
                 alert.showAndWait();
-
+                SendMailConfirmation s1=new SendMailConfirmation(Session.getInstance().getCurrent().getEmail(),"suppression voiture avec succes");
                 TrayNotification tray = new TrayNotification("Succes", " Voiture supprimée avec succes",NotificationType.SUCCESS);
             tray.showAndDismiss(javafx.util.Duration.seconds(2));
+            
+            
             } else {
                 // ... user chose CANCEL or closed the dialog
             }
@@ -444,4 +466,97 @@ public class VoitureController implements Initializable {
         carb.selectToggle(null);
     }
     
+    
+    @FXML
+    void onUpdateClicked(ActionEvent event) throws IOException {
+    
+        if (TabView.getSelectionModel().getSelectedIndices().size() > 0) {
+            textMarque.setText(TabView.getSelectionModel().getSelectedItem().getMarque());
+            textModele.setText(TabView.getSelectionModel().getSelectedItem().getModele());
+            textCouleur.setText(TabView.getSelectionModel().getSelectedItem().getCouleur());
+            textMatricule.setText(TabView.getSelectionModel().getSelectedItem().getMatricule());
+            String kilo= Integer.toString(TabView.getSelectionModel().getSelectedItem().getKilometrage());
+            textKilometrage.setText(kilo);
+            String nbrch = Integer.toString(TabView.getSelectionModel().getSelectedItem().getNbr_cheveaux());
+            textPuissance.setText(nbrch);
+            textPhoto1.setText(TabView.getSelectionModel().getSelectedItem().getPhoto1());
+            textPhoto2.setText(TabView.getSelectionModel().getSelectedItem().getPhoto2());
+            textPhoto3.setText(TabView.getSelectionModel().getSelectedItem().getPhoto3());
+            btnCancel.setVisible(true);
+            btnUp.setVisible(true);
+            imgCancel.setVisible(true);
+            imgUp.setVisible(true);
+            btnUpdate.setVisible(false);
+            btnAdd.setVisible(false);
+            btnClean.setVisible(false);
+            btnRemove.setVisible(false);
+            btnView.setVisible(false);
+            imgAdd.setVisible(false);
+            imgClean.setVisible(false);
+            imgRemove.setVisible(false);
+            imgUpdate.setVisible(false);
+            imgView.setVisible(false);
+            
+            /*if (btnUp.isPressed()==true && btnCancel.isPressed()==false){
+                
+                String carburant=null;
+        String marque = textMarque.getText();
+        String modele = textModele.getText();
+        String mat = textMatricule.getText();
+        String couleur = textCouleur.getText();
+        int puiss = Integer.parseInt(textPuissance.getText());
+        int kilomet = Integer.parseInt(textKilometrage.getText());
+        
+        if (carb.getSelectedToggle()==radioDiesel){
+            carburant="diesel";
+        }else if (carb.getSelectedToggle()==radioEssence){
+            carburant="essence";
+        } 
+       
+        
+        voi = new Voiture(mat,marque,modele,
+                Controller.asDate(dateMecanique.getValue()),
+                couleur,puiss,kilomet,carburant,
+                Session.getInstance().getCurrent().getIdUtilisateur(),
+                Controller.asDate(dateAssurance.getValue()),
+                Controller.asDate(datePneu.getValue()),
+                Controller.asDate(dateVisiTech.getValue()),
+                Controller.asDate(dateCroix.getValue()),
+                Controller.asDate(dateVidange.getValue()),
+                Controller.asDate(dateVigniette.getValue()),
+                "","","",Session.getInstance().getCurrent().getIdUtilisateur());
+        
+        carDAO.update(voi);
+                
+                URL sceneToLoad = null;
+        String title = null;
+         sceneToLoad = new File("src/app/karhbty/views/FXMLVoiture.fxml").toURL();
+   Stage primaryStage = null;
+   
+        FXMLLoader fxmlLoader = new FXMLLoader(sceneToLoad);
+        Parent root1 = (Parent) fxmlLoader.load();
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow() ;
+
+        stage.setScene(new Scene(root1));
+        stage.show();
+        System.out.println("Vous etes dans profil voiture");
+         
+            }else*/ if (btnCancel.isPressed()==true && btnUp.isPressed()==false){
+                URL sceneToLoad = null;
+        
+         sceneToLoad = new File("src/app/karhbty/views/FXMLVoiture.fxml").toURL();
+        FXMLLoader fxmlLoader = new FXMLLoader(sceneToLoad);
+        Parent root1 = (Parent) fxmlLoader.load();
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow() ;
+
+        stage.setScene(new Scene(root1));
+        stage.show();
+        System.out.println("Vous etes dans profil voiture");
+            }
+        }
+        
+        
+    }
 }

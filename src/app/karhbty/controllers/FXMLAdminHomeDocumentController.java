@@ -6,6 +6,7 @@
 package app.karhbty.controllers;
 
 import app.karhbty.datasource.ServiceFactory;
+import app.karhbty.datasource.Session;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -93,8 +94,12 @@ public class FXMLAdminHomeDocumentController implements Initializable {
 
     @FXML
     private Label lblKarhbty;
-            
+    
+    @FXML
+    private JFXButton btnDisco;
 
+    @FXML
+    private ImageView imgDisco;
 
 
     @Override
@@ -259,4 +264,39 @@ stage.show();
         stage.show();
         System.out.println("Vous etes dans votre profil");    
     }
+    
+    @FXML
+    private void goVoiture(ActionEvent event) throws IOException {
+        URL sceneToLoad = null;
+        
+         sceneToLoad = new File("src/app/karhbty/views/FXMLAdminHistoVoiture.fxml").toURL();
+   Stage primaryStage = null;
+   
+        FXMLLoader fxmlLoader = new FXMLLoader(sceneToLoad);
+        Parent root1 = (Parent) fxmlLoader.load();
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow() ;
+        
+        stage.setScene(new Scene(root1));
+        stage.show();
+        System.out.println("Vous etes dans le gestionnaire des voitures");    
+    }
+    @FXML
+  public void logout(ActionEvent e)throws IOException
+  {  
+     URL sceneToLoad = null;
+        
+        Session.logOut();
+         sceneToLoad = new File("src/app/karhbty/views/LoginInterface.fxml").toURL();
+         Stage primaryStage = null;
+   
+        FXMLLoader fxmlLoader = new FXMLLoader(sceneToLoad);
+        Parent root1 = (Parent) fxmlLoader.load();
+        Node node = (Node) e.getSource();
+        Stage stage = (Stage) node.getScene().getWindow() ;
+
+        stage.setScene(new Scene(root1));
+        stage.show();
+        System.out.println("Merci pour votre visite"); 
+  }
 }

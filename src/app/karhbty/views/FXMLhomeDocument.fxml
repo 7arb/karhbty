@@ -164,5 +164,14 @@
             </LinearGradient>
          </textFill>
       </Label>
+      <JFXButton fx:id="btnDisco" layoutX="24.0" layoutY="510.0" onAction="#logout" prefHeight="64.0" prefWidth="89.0" text=" ">
+         <graphic>
+            <ImageView fx:id="imgDisco" fitHeight="43.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../medias/deconncter.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

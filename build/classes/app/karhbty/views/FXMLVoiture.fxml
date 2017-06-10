@@ -83,9 +83,19 @@
                   </Pane>
                   <Pane fx:id="Pane24" layoutY="536.0" prefHeight="54.0" prefWidth="600.0" style="-fx-background-color: #004f66;">
                      <children>
+                        <ImageView fx:id="imgCancel" fitHeight="35.0" fitWidth="41.0" layoutX="411.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../medias/cancel.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgUp" fitHeight="41.0" fitWidth="41.0" layoutX="211.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../medias/update.png" />
+                           </image>
+                        </ImageView>
                         <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="61.0" layoutY="-4.0" onAction="#onAddClicked" prefHeight="49.0" prefWidth="52.0" style="-fx-background-color: #f9f9f9;" />
-                        <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="150.0" layoutY="-4.0" prefHeight="49.0" prefWidth="53.0" style="-fx-background-color: #428bca;" />
-                        <JFXButton fx:id="btnView" buttonType="RAISED" layoutX="258.0" layoutY="-4.0" prefHeight="49.0" prefWidth="52.0" style="-fx-background-color: #5cb85c;" />
+                        <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="150.0" layoutY="-4.0" onAction="#onUpdateClicked" prefHeight="49.0" prefWidth="53.0" style="-fx-background-color: #428bca;" />
+                        <JFXButton fx:id="btnView" buttonType="RAISED" layoutX="258.0" layoutY="-4.0" onAction="#onAffichClicked" prefHeight="49.0" prefWidth="52.0" style="-fx-background-color: #5cb85c;" />
                         <JFXButton fx:id="btnClean" buttonType="RAISED" layoutX="352.0" layoutY="-4.0" onAction="#nettoyage" prefHeight="49.0" prefWidth="53.0" style="-fx-background-color: #5bc0de;" textFill="#04e5d8" />
                         <JFXButton fx:id="btnRemove" buttonType="RAISED" layoutX="459.0" layoutY="-4.0" onAction="#deleteCar" prefHeight="49.0" prefWidth="53.0" style="-fx-background-color: #d9534f;" />
                         <ImageView fx:id="imgAdd" fitHeight="41.0" fitWidth="45.0" layoutX="66.0" pickOnBounds="true" preserveRatio="true">
@@ -113,6 +123,8 @@
                               <Image url="@../medias/clean.jpg" />
                            </image>
                         </ImageView>
+                        <JFXButton fx:id="btnUp" layoutX="203.0" layoutY="-4.0" prefHeight="49.0" prefWidth="52.0" text=" " />
+                        <JFXButton fx:id="btnCancel" layoutX="405.0" layoutY="-4.0" prefHeight="49.0" prefWidth="53.0" text=" " />
                      </children>
                   </Pane>
                </children>

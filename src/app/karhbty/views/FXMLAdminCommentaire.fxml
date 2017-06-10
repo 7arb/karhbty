@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="AnPane" prefHeight="593.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.karhbty.controllers.FXMLCommentaireController">
+<AnchorPane id="AnchorPane" fx:id="AnPane" prefHeight="593.0" prefWidth="1200.0" style="-fx-background-color: #004f66;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.karhbty.controllers.FXMLCommentaireController">
    <children>
       <TabPane fx:id="TabPane" layoutX="14.0" layoutY="62.0" prefHeight="318.0" prefWidth="810.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -20,7 +24,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="TPPieRech" onSelectionChanged="#onPieRechClicked" text="Piece de rechange">
+          <Tab fx:id="TPPieRech" text="Piece de rechange">
             <content>
               <AnchorPane fx:id="APPieRech" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -108,5 +112,48 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <JFXButton fx:id="btnUpdate" layoutX="965.0" layoutY="129.0" text=" ">
+         <graphic>
+            <ImageView fx:id="imgUpdate" fitHeight="64.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../medias/update.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnDelete" layoutX="959.0" layoutY="242.0" onAction="#deleteComm" text=" ">
+         <graphic>
+            <ImageView fx:id="imgDelete" fitHeight="75.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../medias/delete.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnDownload" layoutX="964.0" layoutY="350.0" text=" ">
+         <graphic>
+            <ImageView fx:id="imgDownload" fitHeight="68.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../medias/pdf-icon.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXTextField fx:id="txtDesc" layoutX="180.0" layoutY="461.0" prefHeight="25.0" prefWidth="535.0" text="Description" />
+      <JFXButton fx:id="BtnRetour" layoutX="14.0" layoutY="529.0" onAction="#goBack" text="Retour">
+         <graphic>
+            <ImageView fx:id="imgRetour" fitHeight="42.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../medias/back.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnStats" layoutX="962.0" layoutY="447.0" onAction="#chartview" prefHeight="69.0" prefWidth="85.0" text=" ">
+         <graphic>
+            <ImageView fx:id="imgStats" fitHeight="70.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../medias/stats.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

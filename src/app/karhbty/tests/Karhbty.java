@@ -45,7 +45,7 @@ public class Karhbty {
 //   car.ajouterv2 (v);
 //    TrayNotification tray = new TrayNotification("Success", " Voiture ajouter",NotificationType.SUCCESS);
 //            tray.showAndDismiss(javafx.util.Duration.seconds(2));
-   car.ajouterv3(new Voiture("152","peugeot","206",d,"rouge",6,1689,"",x,d,d,d,d,d,d,"","","",x));
+//   car.ajouterv3(new Voiture("152","peugeot","206",d,"rouge",6,1689,"",x,d,d,d,d,d,d,"","","",x));
    //car.add(new Voiture("11","bm","m3","noir",12,50000,"essence","dgf","dgf","dgf"));
     }
 }

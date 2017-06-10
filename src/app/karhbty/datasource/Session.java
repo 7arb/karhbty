@@ -36,7 +36,7 @@ public class Session {
         return this.current;
     }
     
-    public void logOut(){
+    public static void logOut(){
         single = null;
     }
 }

@@ -32,7 +32,7 @@
                
             
              <children>
-               <JFXButton id="labels" fx:id="histoVoiture" alignment="BOTTOM_CENTER" layoutY="-1.0" prefHeight="189.0" prefWidth="413.0" style="-fx-background-color: #009ed0;" text="Historique des Voitures" textFill="WHITE">
+               <JFXButton id="labels" fx:id="histoVoiture" alignment="BOTTOM_CENTER" layoutY="-1.0" onAction="#goVoiture" prefHeight="189.0" prefWidth="413.0" style="-fx-background-color: #009ed0;" text="Historique des Voitures" textFill="WHITE">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -113,5 +113,14 @@
             </LinearGradient>
          </textFill>
       </Label>
+      <JFXButton fx:id="btnDisco" layoutX="14.0" layoutY="500.0" onAction="#logout" prefHeight="64.0" prefWidth="89.0" text=" ">
+         <graphic>
+            <ImageView fx:id="imgDisco" fitHeight="43.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../medias/deconncter.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

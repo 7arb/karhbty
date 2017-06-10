@@ -6,6 +6,7 @@
 package app.karhbty.entities;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -17,7 +18,7 @@ import java.util.Objects;
 public class Commentaire {
 
     private Integer id_commentaire;
-    private Timestamp dateCommentaire;
+    private Date dateCommentaire;
     private String descriptionCommentaire;
     private Integer id_utilisateur;
     private Integer id_annonce;
@@ -53,11 +54,11 @@ public class Commentaire {
         this.id_commentaire = idCommentaire;
     }
 
-    public Timestamp getDateCommentaire() {
+    public Date getDateCommentaire() {
         return dateCommentaire;
     }
 
-    public void setDateCommentaire(Timestamp dateCommentaire) {
+    public void setDateCommentaire(Date dateCommentaire) {
         this.dateCommentaire = dateCommentaire;
     }
 

@@ -53,7 +53,14 @@ public class Utilisateur {
         this.email = email;
         this.password = password;
     }
+    
+    public Utilisateur(String email, String password,boolean administrateur) {
+        this.email = email;
+        this.password = password;
+        this.administrateur= administrateur;
+    }
 
+    
     public Utilisateur(Integer idUtilisateur, int cin, boolean administrateur, String nom, String prenom, String email, int telephone, String adresse, String password, String photo, boolean respstationMultiService, boolean respautoEcole, boolean respBoutique) {
         this.idUtilisateur = idUtilisateur;
         this.cin = cin;

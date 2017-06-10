@@ -6,6 +6,8 @@
 package app.karhbty.datasource;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 /**
  *
@@ -29,5 +31,9 @@ public class Controller {
         }
         return javaDate;
     }
+    
+    public static java.util.Date asDate(LocalDate localDate) {
+    return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+  }
     
 }
